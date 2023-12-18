@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# REACT QUIZ
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This simple react program presents a bank account with various transactions
+following the rules listed below
 
-## Available Scripts
+## Ultimate React Course
 
-In the project directory, you can run:
+This app was constructed as part of the [Ultimate React Course](https://www.udemy.com/course/the-ultimate-react-course/) on Udemy.com by [Jonas Schmedtmann](https://www.udemy.com/user/jonasschmedtmann/).
 
-### `npm start`
+## React Features Demonstrated
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- useReducer hook
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# INSTRUCTIONS / CONSIDERATIONS:
 
-### `npm test`
+1. Let's implement a simple bank account! It's similar to the example that I used as an analogy to explain how useReducer works, but it's simplified (we're not using account numbers here)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Use a reducer to model the following state transitions: openAccount, deposit, withdraw, requestLoan, payLoan, closeAccount. Use the `initialState` below to get started.
 
-### `npm run build`
+3. All operations (expect for opening account) can only be performed if isActive is true. If it's not, just return the original state object. You can check this right at the beginning of the reducer
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. When the account is opened, isActive is set to true. There is also a minimum deposit amount of 500 to open an account (which means that the balance will start at 500)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. Customer can only request a loan if there is no loan yet. If that condition is met, the requested amount will be registered in the 'loan' state, and it will be added to the balance. If the condition is not met, just return the current state
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+6. When the customer pays the loan, the opposite happens: the money is taken from the balance, and the 'loan' will get back to 0. This can lead to negative balances, but that's no problem, because the customer can't close their account now (see next point)
 
-### `npm run eject`
+7. Customer can only close an account if there is no loan, AND if the balance is zero. If this condition is not met, just return the state. If the condition is met, the account is deactivated and all money is withdrawn. The account basically gets back to the initial state
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Setup and Running
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In order to run this app you will need the following
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Install [Node.js](https://nodejs.org/en) for local development.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. run npm install in the app folder
 
-## Learn More
+3. In a terminal run `launchQuiz.sh` to Start the Web Server and the App,
+   which does the following:
+   a) run `mpm run server` in the app folder
+   b) run `npm start` in a second window
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. open a local browser at http://localhost:3000
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Ports
 
-### Code Splitting
+- http://localhost:3000 - Default React APP port
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Create-React-App Readme
 
-### Analyzing the Bundle Size
+This app was bootstrapped using `npx create-reac-app@5 react-quiz`The default readme for react apps is found at [ReadmeReact.md](./ReadmeReact.md)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Markdown Syntax
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This file is a Markdown file, which is a plaintext file that can be rendered into HTML and is capable of containing hyperlinks, images, tables and other formatting syntax. See the [GitHub Document Writing](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) page for more information.

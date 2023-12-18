@@ -1,0 +1,20 @@
+body {
+  background-color: darkseagreen;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.App p {
+  color: #ffffff;
+  font-size: 1.2em;
+}
+.App button {
+  background-color: forestgreen;
+  color: #ffffff;
+  padding: 0.6em;
+  border-radius: 4px;
+  box-shadow: lightgreen;
+}
