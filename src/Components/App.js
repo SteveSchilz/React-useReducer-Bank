@@ -2,6 +2,7 @@ import { useReducer } from "react";
 
 import "../styles.css";
 import AcctDetails from "./AcctDetails.js";
+import OpenAccount from "./OpenAccount.js";
 import CloseAccount from "./CloseAccount.js";
 import DepositAndWithDraw from "./DepositAndWithDraw.js";
 import TogglePanel from "./TogglePanel.js";
@@ -17,6 +18,9 @@ const initialState = {
 };
 
 function reducer(state, action) {
+  // Short circuit everything but open if account is not open
+  if (!state.isActive && action.type !== "open") return state;
+
   switch (action.type) {
     case "open":
       console.log("open");
@@ -91,15 +95,7 @@ export default function App() {
     <div className="App">
       <AcctDetails balance={balance} loan={loan} isActive={isActive} />
       <TogglePanel isActive={!isActive}>
-        <p>
-          <button
-            className="button"
-            onClick={() => dispatch({ type: "open" })}
-            disabled={isActive}
-          >
-            Open account
-          </button>
-        </p>
+        <OpenAccount isActive={isActive} dispatch={dispatch} />
       </TogglePanel>
       <TogglePanel isActive={isActive}>
         <DepositAndWithDraw
