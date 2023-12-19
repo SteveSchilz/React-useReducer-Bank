@@ -8,7 +8,7 @@ import TogglePanel from "./TogglePanel.js";
 import LoansAndPayments from "./LoansAndPayments.js";
 
 const MAX_FUNDS = 600; //100000;
-const LOAN_AMOUNT = 1000;
+const MAX_LOAN = 2000;
 
 const initialState = {
   balance: 0,
@@ -33,25 +33,45 @@ function reducer(state, action) {
       console.log("close");
       return { ...state, isActive: false };
     case "deposit":
-      return { ...state, balance: state.balance + 50 };
+      if (state.balance + action.payload > MAX_FUNDS) {
+        alert(`FDIC Insured accounts are limited to a max of: ${MAX_FUNDS}`);
+        return state;
+      } else {
+        return { ...state, balance: state.balance + action.payload };
+      }
     case "withdraw":
-      return { ...state, balance: state.balance - 50 };
+      if (state.balance < action.payload) {
+        alert(
+          `Balance of ${state.balance} is insufficient to widthraw ${action.payload}!`
+        );
+        return state;
+      } else {
+        return { ...state, balance: state.balance - action.payload };
+      }
     case "loan":
+      if (action.payload > MAX_LOAN) {
+        alert(
+          `Loan Request for ${action.payload} is > max allowed (${MAX_LOAN}): DENIED`
+        );
+        return state;
+      }
       if (state.loan === 0) {
         return {
           ...state,
-          balance: state.balance + LOAN_AMOUNT,
-          loan: LOAN_AMOUNT,
+          balance: state.balance + action.payload,
+          loan: action.payload,
         };
       } else {
         alert("Only one loan is allowed at a time !");
         return state;
       }
     case "payloan":
-      if (state.loan > 0) {
-        return { ...state, loan: state.loan - LOAN_AMOUNT };
+      if (state.loan >= action.payload) {
+        return { ...state, loan: state.loan - action.payload };
       } else {
-        alert("No loan balance to repay!");
+        alert(
+          `Attempt to pay ${action.payload} on a balance of ${state.loan} is Invalid!`
+        );
         return state;
       }
     case "":
@@ -88,15 +108,11 @@ export default function App() {
           maxBalance={MAX_FUNDS}
           dispatch={dispatch}
         />
-        <LoansAndPayments
-          isActive={isActive}
-          loanAmount={LOAN_AMOUNT}
-          dispatch={dispatch}
-        />
+        <LoansAndPayments isActive={isActive} dispatch={dispatch} />
         <CloseAccount
           balance={balance}
           loan={loan}
-          isActive={isActive}
+          isActive={isActive && balance === 0}
           dispatch={dispatch}
         />
       </TogglePanel>

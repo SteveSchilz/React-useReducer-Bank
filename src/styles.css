@@ -18,3 +18,8 @@ body {
   border-radius: 4px;
   box-shadow: lightgreen;
 }
+
+.App input {
+  padding: 0.6em;
+  margin-right: 0.6em;
+}

@@ -1,30 +1,38 @@
+import { useState } from "react";
+
 function DepositAndWithDraw({ isActive, balance, maxBalance, dispatch }) {
+  const [depositAmount, setDepositAmount] = useState(50);
+  const [withdrawAmount, setWithdrawAmount] = useState(50);
   return (
     <div>
       <p>
+        <input
+          type="number"
+          value={depositAmount}
+          onChange={(E) => setDepositAmount(Number(E.target.value))}
+        />{" "}
         <button
           onClick={() => {
-            balance < maxBalance
-              ? dispatch({ type: "deposit" })
-              : alert(
-                  `FDIC Insured accounts are limited to a max of: ${maxBalance}`
-                );
+            dispatch({ type: "deposit", payload: depositAmount });
           }}
           disabled={!isActive}
         >
-          Deposit 50
+          Deposit
         </button>
       </p>
       <p>
+        <input
+          type="number"
+          value={withdrawAmount}
+          onChange={(E) => setWithdrawAmount(Number(E.target.value))}
+        />{" "}
         <button
           onClick={() => {
-            balance >= 50
-              ? dispatch({ type: "withdraw" })
-              : alert("Insufficient funds to widthraw!");
+            dispatch({ type: "withdraw", payload: withdrawAmount });
           }}
           disabled={!isActive}
         >
-          Withdraw 50
+          Withdraw
         </button>
       </p>
     </div>

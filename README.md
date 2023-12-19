@@ -18,6 +18,7 @@ This app was constructed as part of the [Ultimate React Course](https://www.udem
 2. Use a reducer to model the following state transitions: openAccount, deposit, withdraw, requestLoan, payLoan, closeAccount. Use the `initialState` below to get started.
 
 3. All operations (expect for opening account) can only be performed if isActive is true. If it's not, just return the original state object. You can check this right at the beginning of the reducer
+   NOTE: This was handled by hiding all buttons except open when the account is closed.
 
 4. When the account is opened, isActive is set to true. There is also a minimum deposit amount of 500 to open an account (which means that the balance will start at 500)
 
@@ -35,10 +36,7 @@ In order to run this app you will need the following
 
 2. run npm install in the app folder
 
-3. In a terminal run `launchQuiz.sh` to Start the Web Server and the App,
-   which does the following:
-   a) run `mpm run server` in the app folder
-   b) run `npm start` in a second window
+3. In a terminal run `npm start` to Start the App
 
 4. open a local browser at http://localhost:3000
 
