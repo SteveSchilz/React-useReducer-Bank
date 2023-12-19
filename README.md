@@ -1,17 +1,19 @@
-# REACT QUIZ
+# React useReducer Example Challenge
 
 This simple react program presents a bank account with various transactions
-following the rules listed below
+following the rules listed below.  
 
-## Ultimate React Course
+![SimpleBankAccountScreenShot.png](./Documentation/SimpleBankAccountScreenshot.png)
 
-This app was constructed as part of the [Ultimate React Course](https://www.udemy.com/course/the-ultimate-react-course/) on Udemy.com by [Jonas Schmedtmann](https://www.udemy.com/user/jonasschmedtmann/).
+**React Features Demonstrated**
 
-## React Features Demonstrated
+- useReducer hook - consolidates app logic in the reducer function
+- Components use the "dispatch" function to send an action with a type and an optional payload to the reducer function
+- Break UI into components so Main app 
 
-- useReducer hook
+This app was constructed as part of the [Ultimate React Course](https://www.udemy.com/course/the-ultimate-react-course/) on Udemy.com by [Jonas Schmedtmann](https://www.udemy.com/user/jonasschmedtmann/).  This is a student challenge, where the student is given instructions below, and then implements the app themselves. 
 
-# INSTRUCTIONS / CONSIDERATIONS:
+## INSTRUCTIONS / CONSIDERATIONS:
 
 1. Let's implement a simple bank account! It's similar to the example that I used as an analogy to explain how useReducer works, but it's simplified (we're not using account numbers here)
 
